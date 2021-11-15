@@ -3,7 +3,7 @@ package Address_Book;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AddressBookMain {
+public class AddressBookMain implements AddressBook {
 
 	Scanner scanner = new Scanner(System.in);
 	ArrayList<Person> personList = new ArrayList<Person>();
@@ -43,6 +43,36 @@ public class AddressBookMain {
 		}
 	}
 
+	@Override
+	public void edit(String firstName) {
+		for (int i = 0; i < personList.size(); i++) {
+			Person person = personList.get(i);
+
+			System.out.println("Hi " + person.getfirstName() + " please enter your  new Address");
+			String address = scanner.next();
+			person.setAddress(address);
+
+			System.out.println("Hi " + person.getfirstName() + " please enter your  new city");
+			String city = scanner.next();
+			person.setCity(city);
+
+			System.out.println("Hi " + person.getfirstName() + " please enter your  new state");
+			String state = scanner.next();
+			person.setState(state);
+
+			System.out.println("Hi " + person.getfirstName() + " please enter your  new Zip Code");
+			int zip = scanner.nextInt();
+			person.setPincode(zip);
+
+			System.out.println("Hi " + person.getfirstName() + " please enter your  new Phone No");
+			long PhoneNo = scanner.nextLong();
+			person.setMobileNo(PhoneNo);
+
+			System.out.println("Hi " + person.getfirstName() + " you have sucessfully updated");
+		}
+
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Address Book Problem");
 		AddressBookMain adressBookImplementation = new AddressBookMain();
@@ -50,7 +80,7 @@ public class AddressBookMain {
 
 		while (condition == true) {
 			Scanner scanner = new Scanner(System.in);
-			System.out.println("1.add" + "\n" + "2.Display");
+			System.out.println("1.add" + "\n" + "2.Display" + "\n" + "3.Edit");
 			Scanner option = new Scanner(System.in);
 
 			switch (option.nextInt()) {
@@ -59,6 +89,11 @@ public class AddressBookMain {
 				break;
 			case 2:
 				adressBookImplementation.display();
+				break;
+			case 3:
+				System.out.println("Enter the firstName:");
+				String firstName = scanner.nextLine();
+				adressBookImplementation.edit(firstName);
 				break;
 			default:
 				System.out.println();
