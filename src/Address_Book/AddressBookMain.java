@@ -89,32 +89,66 @@ public class AddressBookMain implements AddressBook {
 		}
 	}
 
+	/*
+	 * Ability to add multiple person to Address Book
+	 */
+
+	@Override
+	public void addMultiplePerson() {
+
+		for (int i = 0; i < 1; i++) {
+			Person person = personList.get(i);
+			System.out.println("Enter a First Name:");
+			String firstName = scanner.next();
+			System.out.println("Enter your last name");
+			String lastName = scanner.next();
+			System.out.println("Enter your address");
+			String address = scanner.next();
+			System.out.println("Enter your city");
+			String city = scanner.next();
+			System.out.println("Enter your state");
+			String state = scanner.next();
+			System.out.println("Enter your zip code");
+			int zip = scanner.nextInt();
+			System.out.println("Enter your phone");
+			long mobileNo = scanner.nextLong();
+
+			Person person2 = new Person(firstName, lastName, address, city, state, mobileNo, zip);
+			personList.add(person2);
+			System.out.println("Contact added successfully");
+		}
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Address Book Problem");
-		AddressBookMain adressBookMain = new AddressBookMain();
+		AddressBookMain adressBookmain = new AddressBookMain();
 		boolean condition = true;
 
 		while (condition == true) {
 			Scanner scanner = new Scanner(System.in);
-			System.out.println("1.add" + "\n" + "2.Display" + "\n" + "3.Edit" + "\n" + "4.Delete");
+			System.out.println(
+					"1.add" + "\n" + "2.Display" + "\n" + "3.Edit" + "\n" + "4.Delete" + "\n" + "5.Add MultiplePerson");
 			Scanner option = new Scanner(System.in);
 
 			switch (option.nextInt()) {
 			case 1:
-				adressBookMain.add();
+				adressBookmain.add();
 				break;
 			case 2:
-				adressBookMain.display();
+				adressBookmain.display();
 				break;
 			case 3:
 				System.out.println("Enter the firstName:");
 				String firstName = scanner.nextLine();
-				adressBookMain.edit(firstName);
+				adressBookmain.edit(firstName);
 				break;
 			case 4:
 				System.out.println("Enter the Name of the person do you wants to delete");
 				String name = scanner.nextLine();
-				adressBookMain.delete(name);
+				adressBookmain.delete(name);
+				break;
+			case 5:
+				adressBookmain.addMultiplePerson();
 				break;
 			default:
 				System.out.println();

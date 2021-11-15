@@ -8,4 +8,6 @@ public interface AddressBook {
 	void edit(String firstName);
 
 	void delete(String firstName);
+
+	void addMultiplePerson();
 }
