@@ -43,6 +43,9 @@ public class AddressBookMain implements AddressBook {
 		}
 	}
 
+	/*
+	 * Ability to edit the Existing Contact in Address Book
+	 */
 	@Override
 	public void edit(String firstName) {
 		for (int i = 0; i < personList.size(); i++) {
@@ -73,27 +76,45 @@ public class AddressBookMain implements AddressBook {
 
 	}
 
+	/*
+	 * Ability to Delete Contact in Address Book
+	 */
+	@Override
+	public void delete(String name) {
+		for (int i = 0; i < personList.size(); i++) {
+			if (personList.get(i).getfirstName().equals(name)) {
+				Person person = personList.get(i);
+				personList.remove(person);
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Address Book Problem");
-		AddressBookMain adressBookImplementation = new AddressBookMain();
+		AddressBookMain adressBookMain = new AddressBookMain();
 		boolean condition = true;
 
 		while (condition == true) {
 			Scanner scanner = new Scanner(System.in);
-			System.out.println("1.add" + "\n" + "2.Display" + "\n" + "3.Edit");
+			System.out.println("1.add" + "\n" + "2.Display" + "\n" + "3.Edit" + "\n" + "4.Delete");
 			Scanner option = new Scanner(System.in);
 
 			switch (option.nextInt()) {
 			case 1:
-				adressBookImplementation.add();
+				adressBookMain.add();
 				break;
 			case 2:
-				adressBookImplementation.display();
+				adressBookMain.display();
 				break;
 			case 3:
 				System.out.println("Enter the firstName:");
 				String firstName = scanner.nextLine();
-				adressBookImplementation.edit(firstName);
+				adressBookMain.edit(firstName);
+				break;
+			case 4:
+				System.out.println("Enter the Name of the person do you wants to delete");
+				String name = scanner.nextLine();
+				adressBookMain.delete(name);
 				break;
 			default:
 				System.out.println();
